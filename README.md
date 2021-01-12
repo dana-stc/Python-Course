@@ -1,6 +1,10 @@
 ## Python Course
 
+- [Course 1](#course-1)
+- [Course 2](#course-2)
+
 ### Course 1
+
 - a variable can change its type during execution time
 ```python
 my_var = 10 # x is an int
@@ -157,3 +161,5 @@ def multi_sum (*list_numbers):
 print(multi_sum(1,2,3)) # 6
 print(multi_sum()) # 0
 ```
+
+### Course 2
