@@ -1,7 +1,8 @@
 ## Python Course
 
-- [Course 1](#course-1)
-- [Course 2](#course-2)
+- [Course 1 - Intro](#course-1)
+- [Course 2 - Lists and Tuples](#course-2)
+- [Course 3 - Sets and Dictionaries](#course-3)
 
 ### Course 1
 
@@ -417,3 +418,4 @@ x = [1,2,3]
 del x
 print (x) #!!!ERROR!!! x no longer exists
 ```
+### Course 3
