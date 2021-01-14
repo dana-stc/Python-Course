@@ -419,3 +419,247 @@ del x
 print (x) #!!!ERROR!!! x no longer exists
 ```
 ### Course 3
+***Sets*** = list of unique data
+```python
+x = set() #x is an empty set
+x = {1,2,3} #x is a set containing 3 elements: 1,2 and 3
+x = {1,2,2,3,1,1} #x is a set containing 3 elements: 1,2 and 3
+x = {1,2,”AB”,”ab”} #x is a set containing 4 elements: 1,2,“AB” and “ab”
+x = set((1,2,3,2)) #x is a set containing 3 elements: 1,2 and 3
+x = set([1,2,3,2]) #x is a set containing 3 elements: 1,2 and 3
+x = set(”Hello”) #x is a set containing 4 characters: H,e,l and o
+```
+Elements from a set can NOT be accessed (they are unordered collections).
+Similarly – there is no addition operation defined between two sets.
+```python
+x = {'A', 'B', 2, 3, 'C'}
+x[0], x[1], x[1:2], ... ➔ all this expression will produce an error
+
+x = {'A', 'B', 2, 3, 'C'}
+y = {'D', 'E', 1}
+z = y + z #!!!ERROR !!
+```
+```python
+x = {1,2,3} #x = {1, 2, 3}
+x.add(4) #x = {1, 2, 3, 4}
+x.add(1) #x = {1, 2, 3, 4}
+
+x = {1,2,3} #x = {1, 2, 3}
+x.remove(1) #x = {2, 3}
+x.discard(2) #x = {3}
+x.discard(2) #x = {3}
+
+x = {1,2,3} #x = {1, 2, 3}
+x.clear() #x = {}
+```
+```python
+x = {1,2,3} #x = {1, 2, 3}
+x |= {3,4,5} #x = {1, 2, 3, 4, 5}
+x.update({5,6}) #x = {1, 2, 3, 4, 5, 6}
+x.update({5,6},{6,7}) #x = {1, 2, 3, 4, 5, 6, 7}
+x.update({8},{6},{9}) #x = {1, 2, 3, 4, 5, 6, 7, 8, 9}
+```
+```python
+x = {1,2,3}
+y = {3,4,5}
+t = {2,4,6}
+z = x | y | t #z = {1, 2, 3, 4, 5, 6}
+s = {7,8}
+w = x.union(s) #w = {1, 2, 3, 7, 8}
+w = x.union(s, y, t) #w = {1, 2, 3, 4, 5, 6, 7, 8}
+
+x = {1,2,3,4}
+y = {2,3,4,5}
+t = {3,4,5,6}
+z = x & y & t #z = {3, 4}
+w = x.intersection(y) #w = {2, 3, 4}
+w = x.intersection(y, t)#w = {3, 4}
+
+x = {1,2,3,4}
+y = {2,3,4,5}
+z = x - y #z = {1}
+z = y – x #z = {5}
+w = x.difference(y) #w = {1}
+s = {1,2,3}
+w = x.difference(y,s) #w = {} → empty set
+
+# XOR = x ^ y = (x - y) UNION (y - x)
+x = {1,2,3,4}
+y = {2,3,4,5}
+z = x ^ y #z = {1, 5}
+z = y ^ x #z = {1, 5}
+w = x.symmetric_difference(y) #w = {1, 5}
+s = {1,2,3}
+# it has only one parameter !!
+w = x.symmetric_difference(y,s) #!!! ERROR !!!
+```
+```python
+x = {1,2,3,4}
+y = 2 in x #y = True
+z = 5 not in x #z = True
+y = len (x) #y = 4
+```
+```python
+x = {1,2,3,4}
+y = {10,20,30,40}
+# intersection is of length 0
+z = x.isdisjoint(y) #z = True
+
+x = {1,2,3,4}
+y = {1,2,3,4,5,6}
+z = x.issubset(y) #z = True
+t = x <= y #t = True
+
+# all elements from x are in y but y contains at leat one element diferent
+x = {1,2,3,4}
+y = {1,2,3,4,5,6}
+z = y.issuperset(x) #z = True
+t = y >= x #t = True
+
+x = {1,2,3,4}
+y = {1,2,3,4,5,6}
+t = y > x #t = True
+```
+```python
+# it is not guaranteed to delete the last item - Unordered collections -
+x = {"A","a","B","b",1,2,3}
+print (x)
+print (x.pop())
+# {1, 2, 3, 'b', 'B', 'A', 'a'}
+# 1
+```
+```python
+x = {i for i in range(1,9)} #x = {1,2,3,4,5,6,7,8}
+x = {i for i in range(1,100) if i % 23 == 0} #x = {23, 46, 69, 92}
+x = {i*i for i in range(1,6)} #x = {1, 4, 9, 16, 25}
+x = {i%5 for i in range(0,100)} #x = {0, 1, 2, 3, 4}
+```
+```python
+x = {1,2,3,4,5}
+y = set(map(lambda element: element*element,x)) #y = {1,4,9,16,25}
+
+x = [1,2,3]
+y = [4,5,6]
+z = set(map(lambda e1,e2: e1+e2,x,y)) #z = {5,7,9}
+```
+```python
+x = [1,2,3,4,5]
+y = set(filter(lambda element: element%2==0,x)) #y = {2,4}
+
+x = set(map(lambda x: x*x, range(1,10)))
+#x = {1, 4, 9, 16, 25, 36, 49, 64, 81}
+x = set(filter(lambda x: x%7==1,range(1,100)))
+#x = {1, 8, 15, 22, 29, 36, 43, 50, 57, 64, 71, 78, 85, 92, 99}
+```
+```python
+for i in {1,2,3,4,5}:
+      print(i)
+      
+# equivalent to a tuple to a list
+x = frozenset ({1,2,3})
+x.add(10) #!!!ERROR!!!
+```
+A ***dictionary*** is python implementation of a hash-map container. (key – value pair) (key - unique)
+```python
+x = dict() #x is an empty dictionary
+x = {} #x is an empty dict (typeof(x)=“dict”)
+x = {”A”:1, ”B”:2} #x is a dictionary with 2 keys (“A” and “B”)
+x = dict(abc=1,aaa=2) #equivalent to x= {”abc”:1, ”aaa”:2}
+x = dict({”abc”:1,”aaa”:2}) #equivalent to x= {”abc”:1, ”aaa”:2}
+x = dict([(”abc”,1) ,(”aaa”,2)]) #equivalent to x= {”abc”:1, ”aaa”:2}
+x = dict(((”abc”,1) ,(”aaa”,2))) #equivalent to x= {”abc”:1, ”aaa”:2}
+x = dict(zip([”abc”,”aaa”],[1,2]))#equivalent to x= {”abc”:1, ”aaa”:2}
+```
+```python
+x = {} #x is an empty dictionary
+# if key exists it will be overridden
+x[”ABC”] = 2 #x is a dictionary with one key (ABC)
+y = x[”ABC”] #y = 2
+y = x[”test”] #!!! ERROR !!!
+
+x = {”A”:1, ”B”:2} #x is a dictionary with 2 keys
+”A” in x #True
+len (x) #2
+```
+```python
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+y = x.setdefault(”C”,3) #x = {”A”:1,”B”:2,”C:3”}, y=3
+y = x.setdefault(”D”) #x = {”A”:1,”B”:2,”C:3”,”D”:None}, y=None
+y = x.setdefault(”A”) #x = {”A”:1,”B”:2,”C:3”,”D”:None}, y=1
+y = x.setdefault(”B”,20) #x = {”A”:1,”B”:2,”C:3”,”D”:None}, y=2
+
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+x.update({”A”:10}) #x = {”A”:10,”B”:2}
+x.update({”A”:100,”B”:5}) #x = {”A”:100,”B”:5}
+x.update({”C”:3}) #x = {”A”:100,”B”:5,”C”:3}
+x.update(D=123,E=111) #x = {”A”:100,”B”:5,”C”:3,”D”:123,”E”:111}
+```
+```python
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+del x[”A”] #x = {”B”:2}
+x.clear() #x is an empty dictionary
+del x[”C”] #!!! ERROR !!! “C” is not a key in x
+
+x = {”A”:1, ”B”:2} #x={”A”:1,”B”:2}
+y = x.copy() #makes a shallow copy of x
+y[”C”]=3 #x={”A”:1,”B”:2},y={”A”:1,”B”:2,”C”:3}
+
+x = dict.fromkeys([”A”,”B”]) #x = {”A”:None,”B”:None}
+x = dict.fromkeys([”A”,”B”],2)#x = {”A”:2,”B”:2}
+```
+```python
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+y = x.get(”A”) #y = 1
+y = x.get(”C”) #y = None
+y = x.get(”C”,123) #y = 123
+
+x = {”A”:1, ”B”:2} #x={”A”:1,”B”:2}
+y = x.pop(”A”) #x={”B”:2}, y = 1
+y = x.pop(”C”,123) #x={”B”:2}, y = 123
+y = x.pop(”D”) #!!! ERROR !!! Key “D” does not exist
+               #and no default value was provided
+```
+```python
+x = {i:i for i in range(1,9)}
+#x = {1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8}
+x = {i:chr(64+i) for i in range(1,9)}
+#x = {1:”A”,2:”B”,3:”C”,4:”D”,5:”E”,6:”F”,7:”G”,8:”H”}
+x = {i%3:i for i in range(1,9)}
+#x = {0:6,1:7,2:8} → last values that were updated
+x = {i:chr(64+i) for i in range(1,9) if i%2==0}
+#x = {2:”B”, 4:”D”, 6:”F”, 8:”H”}
+x = {i%3:chr(64+i) for i in range(1,9) if i<7}
+#x = {1:”D”, 2:”E”, 0:”F”}
+```
+```python
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+y = x.keys() #y = [”A”,”B”] → an iterable object
+
+x = {”A”:1, ”B”:2}
+for i in x:
+      print (i)
+# similar with
+x = {”A”:1, ”B”:2}
+for i in x.keys():
+      print (i)
+
+
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+y = x.values() #y = [”1”,”2”] → an iterable object
+
+x = {”A”:1, ”B”:2}
+for i in x.values():
+      print (i)
+```
+```python
+x = {”A”:1, ”B”:2} #x = {”A”:1,”B”:2}
+y = x.items() #y = an iterable object (Python 3) or
+              #a list of tuples for Python 2.
+              #[ (”A”:1) , (”B”:2) ]
+```
+```python
+
+```
+```python
+
+```
