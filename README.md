@@ -3,6 +3,7 @@
 - [Course 1 - Intro](#course-1)
 - [Course 2 - Lists and Tuples](#course-2)
 - [Course 3 - Sets and Dictionaries](#course-3)
+- [Course 4 - Exceptions & modules](#course-4)
 
 ### Course 1
 
@@ -658,8 +659,50 @@ y = x.items() #y = an iterable object (Python 3) or
               #[ (”A”:1) , (”B”:2) ]
 ```
 ```python
-
+x = {
+      "Dacia" : 120,
+      "BMW" : 160,
+      "Toyota" : 140
+      }
+for i in sorted(x.items(),key = lambda element : element[1]): # after the value
+      print (i)   
+      
+# (“Dacia”, 120)
+# (“Toyota”, 140)
+# (“BMW”, 160)
+```
+Operator ** can be used in a function to specify that the list of parameters of that function should be treated as a dictionary.
+```python
+def GetFastestCar(**cars):
+      min_speed = 0
+      name = None
+      for car_name in cars:
+            if cars[car_name] > min_speed:
+                  name = car_name
+                  min_speed = cars[car_name]
+      return name
+fastest_car = GetFastestCar(Dacia=120,BMW=160,Toyota=140)
+print (fastest_car)
+#fastest_car = ”BMW”
 ```
 ```python
-
+x = {
+      "Dacia" : 120,
+      "BMW" : 160,
+      "Toyota" : 140
+}
+y = dict(filter(lambda element : element[1]>=140,x.items()))
+#y = {”Toyota”:140, ”BMW”:160}
 ```
+```python
+x = {
+      "Dacia" : 120,
+      "BMW" : 160,
+      "Toyota" : 140,
+      "Volvo" : 115,
+      "Renault" : 120,
+}
+for a in enumerate (x):
+      print (a)
+```
+### Course 4
