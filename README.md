@@ -706,3 +706,70 @@ for a in enumerate (x):
       print (a)
 ```
 ### Course 4
+Else - if an exception didn't occurred
+```python
+try:
+      x = 5 / 1
+except:
+      print("Exception")
+else:
+      print("All ok")
+# All ok
+```
+BaseException - all exceptions derived from this class
+! Generic exceptions must be last one. Code will not execute.
+```python
+def Test (y):
+try:
+      x = 5 / y
+except:
+      print("Generic exception")
+except ArithmeticError:
+      print("ArithmeticError")
+else:
+      print("All ok")
+```
+Else - if an exception didn't occurred
+Finally  - it executes if an exception occures or not
+```python
+def Test (y):
+      try:
+            x = 5 / y
+      except:
+            print("Error")
+      else:
+            print("All ok")
+      finally:
+            print("Final")
+Test(0)
+      # Error
+      # Final
+Test(1)
+      # All ok
+      # Final
+```
+! Finally  should be always last !
+```python
+def Test (y):
+      try:
+            x = 5 / y
+      except (ArithmeticError,TypeError):
+            print("ArithmeticError")
+      except:
+            print("Generic exception")
+      else:
+            print("All ok")
+```
+```python
+try:
+      x = 5 / 0
+except Exception as e:
+      print( str(e) )
+# division by 0
+```
+```python
+
+```
+```python
+
+```
