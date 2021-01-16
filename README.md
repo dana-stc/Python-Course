@@ -768,6 +768,36 @@ except Exception as e:
 # division by 0
 ```
 ```python
+try:
+      raise Exception("Testing raise command")
+except Exception as e:
+      print(e)
+# Testing raise command
+```
+```python
+try:
+      raise Exception("Param1",10,"Param3")
+except Exception as e:
+      params = e.args
+      print (len(params))
+      print (params[0])
+# 3
+# Param1
+```
+
+assert ( conditie ), "Some output" # Daca e adevarat, trece mai departe, altfel, arunca o execeptie cu acel text dat
+pass = treci mai departe, nu fa nimic; neindicat
+raise SystemExit # opreste executia scriptului
+
+*** Module *** = librarii care extind functionalitatea in python; de multe ori scrise in C++
+
+dir = used to obtain a list of all the functions and objects that a module exports
+ 
+
+```python
+
+```
+```python
 
 ```
 ```python
