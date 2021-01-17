@@ -918,6 +918,7 @@ Python search path and you will be able to access it directly. These paths are:
 exec("def num_sum(x,y): return x+y")
 print(num_sum(10,20))
 ```
+
 ```python
 data = [0x65, 0x66, 0x67, 0x21, 0x54, 0x76, 0x6E, 0x62, 0x29, 0x79,
       0x2D, 0x7A, 0x2D, 0x7B, 0x2A, 0x3B, 0x0E, 0x0B, 0x0A, 0x73,
@@ -938,7 +939,9 @@ r = re.compile("07[0-9]{8}")
 if r.match("0740123456"):
       print("Match")
 ```
+
 - se folosesc ambele cand fac verificarea intr-o bucla
+
 ```python
 import re
 if re.match("07[0-9]{8}", "0740123456"):
@@ -954,21 +957,113 @@ r = re.compile(“\d+")
 if r.search("Price is 123 USD"):
       print ("Found")
 ```
+
 search = se opreste dupa primul pattern identificat, cerut de moi
-- group 
-- lastindex
-```python
 
-```
 ```python
+import re
+result = re.search("(\d+)[^\d]*(\d+)","Price is 123 USD aprox 110 EUR")
+if result:
+      print (result.lastindex)
+      for i in range(0,result.lastindex+1):
+            print (i, "=>", result.group(i))
 
+2
+0 => 123 USD, aprox. 110
+1 => 123
+2 => 110
 ```
+
 ```python
+import re
+result = re.search("((\d+),(\d+))[^\d]*(\d+)", "Color from pixel 20,30 is 123")
+if result:
+      print (result.lastindex)
+      for i in range(0,result.lastindex+1):
+      print (i, "=>", result.group(i))
 
+4
+0 => 20,30 is 123
+1 => 20,30
+2 => 20
+3 => 30
+4 => 123
 ```
+
 ```python
-
+import re
+result = re.findall("\d+","Color from pixel 20,30 is 123")
+if result:
+      print (result)
+['20', '30', '123']
 ```
+
+```python
+import re
+result = re.findall("(\d)(\d+)","Color from pixel 20,30 is 123")
+if result:
+      print (result)
+      
+[('2', '0'), ('3', '0'), ('1', '23')]
+```
+
+```python
+import re
+
+result = re.split("[aeiou]+","Color from pixel 20,30 is 123")
+print (result)
+
+['C', 'l', 'r fr', 'm p', 'x', 'l 20,30 ', 's 123']
+```
+
+```python
+import re
+print (re.split("\d\d","Color from pixel 20,30 is 123"))
+
+'Color from pixel ' ',' ' is ' '3'
+```
+
+```python
+import re
+print (re.split("(\d)(\d)","Color from pixel 20,30 is 123"))
+
+'Color from pixel ' '2' '0' ',' '3' '0' ' is ' '1' '2' '3'
+```
+! Daca se face split dupa ceva ce e in paranteza se face split dupa ce e in paranteza dar le pune si pe ele in lista.
+
+```python
+ import re
+s = "Today I'm having a python course"
+print (re.sub("having\s+a\s+\w+\s+course", "not doing anything", s))
+
+Today I’m not doing anything
+```
+
+Aici ma folosesc de grupuri; pun numele cursului intre paranteze si accesez cu \1 sau \g<1>
+```python
+import re
+s = "Today I'm having a python course"
+print (re.sub("having\s+a\s+(\w+)\s+course",
+                  r"not doing the \1 course",
+                  s))
+                  
+Today I’m not doing the python course
+```
+
+sub (pattern, replace, string, count=0, flags=0)
+```python
+import re
+def ConvertToHex(s):
+      return hex(int(s.group(0)))
+s = "File size is 12345 bytes"
+print (re.sub("\d+",ConvertToHex, s))
+
+File size is 0x3039 bytes
+```
+Python regular expressions supports extensions. The form of the extension is (?...)4
+result.groupdict()
+(?i)(...) ignore case will be applied for the current block match
+(?s)(...) “.” (dot) will match everything
 
 ### Course 7
 ```python
