@@ -6,6 +6,13 @@
 - [Course 4 - Exceptions & modules](#course-4)
 - [Course 5 - Modules & Packages](#course-5)
 - [Course 6 - Regular expressions](#course-6)
+- [Course 7 - Serialization, Time module, Random module, Hash functions, zip files](#course-7)
+- [Course 8 - Networking](#course-8)
+- [Course 9 - Classes - 1](#course-9)
+- [Course 10 - Classes - 2](#course-10)
+- [Course 11 - Threading and synchronization](#course-11)
+- [Course 12 - C/C++ bindings - 1](#course-12)
+- [Course 13 - C/C++ bindings - 2](#course-13)
 
 ### Course 1
 
@@ -948,6 +955,8 @@ if r.search("Price is 123 USD"):
       print ("Found")
 ```
 search = se opreste dupa primul pattern identificat, cerut de moi
+- group 
+- lastindex
 ```python
 
 ```
@@ -960,3 +969,38 @@ search = se opreste dupa primul pattern identificat, cerut de moi
 ```python
 
 ```
+
+### Course 7
+```python
+
+```
+
+### Course 8
+```python
+
+```
+
+### Course 9
+```python
+
+```
+
+### Course 10
+```python
+
+```
+
+### Course 11
+```python
+
+```
+
+### Course 12
+```python
+
+```
+
+### Course 13
+```python
+
+```   
