@@ -4,6 +4,8 @@
 - [Course 2 - Lists and Tuples](#course-2)
 - [Course 3 - Sets and Dictionaries](#course-3)
 - [Course 4 - Exceptions & modules](#course-4)
+- [Course 5 - Modules & Packages](#course-5)
+- [Course 6 - Regular expressions](#course-6)
 
 ### Course 1
 
@@ -790,10 +792,165 @@ pass = treci mai departe, nu fa nimic; neindicat
 raise SystemExit # opreste executia scriptului
 
 *** Module *** = librarii care extind functionalitatea in python; de multe ori scrise in C++
-
 dir = used to obtain a list of all the functions and objects that a module exports
- 
 
+sys.argv[0] = nume fisier; de la 1 incolo inserez de la command line
+sys.argv[1:] = creaza o noua lista cu elemenete de la linia de coamanda, toate de tip string
+
+os.listdir(".")) = lista toate fisierele si directoarele din fisierul curent
+os.mkdirs = creare folder in folder in ... folder
+os.chdir = change current path
+os.rmdir = delete folder
+os.remove = delete file
+os.rename
+
+print (os.path.join (”C:”,”Windows”,”System32”)) = le face merge ca sa creeze un path; pe toate OS-urile = C:\Windows\System32
+print (os.path.splitext (”C:\\Windows\\abc.txt”)) =  [“C:\Windows\abc”, “.txt”]
+```python
+import os
+for (root,directories,files) in os.walk("."):
+      for fileName in files:
+            full_fileName = os.path.join(root,fileName)
+            print (full_fileName)
+```
+os.system(comanda) = rulezi comanda in cmd
+
+```python
+x = input("Enter: ")
+print (x,type(x))
+
+# >>> Enter: 1+2*3.0
+# 1+2*3.0 <class 'str'>
+```
+```python
+>>> print (“test”,10,sep=“---”)
+test---10
+
+>>> print (“test”,end=“***”);print(“test2”)
+test***test2
+
+>>> print (“test”,10)
+test 10
+
+>>> print (“test”);print(“test2”)
+test
+test2
+```
+```python
+for line in open("a.py"):
+print (line.strip())
+```
+```python
+x = [line for line in open("file.txt") if "Gen" in line.strip()]
+print (len(x))
+ # toate liniile care contin acel sring
+ 
+data = open("file.txt","rb").read() # tot continutul fisierului
+
+open("file.txt","wt").write("A new file ...") # scris in fisier
+```
+```python
+try:
+      f = open("abc.txt")
+      for line in f:
+            print(line.strip())
+      f.close()
+except:
+      print("Unable to open file abc.txt")
+```
+```python
+f = open("a.py","rb")
+print ("File name : ", f.name)
+print ("File open mode : ", f.mode) # cum a fost deschis acel fisier
+print ("Is it closed ? : ", f.closed) # daca a fost inchis sau nu
+```
+
+### Course 5
+```python
+def Sum(x,y):
+      return x+y
+print ("MyModule loaded")
+
+import sys
+sys.path += ["<folder>"] # daca nu e in folderul curent
+import MyModule # afiseaza ce e in print
+print (MyModule.Sum(10,20))
+import MyModule # nu afiseaza ce e in print
+```
+__ doc __ = documentatie
+help(modul)
+__ name __ = if executed directly, __ main __ , else if is's imported, its name
+
+***Packages***
+__ init __ .py = acel folder face parte din pachetul mare
+
+```python
+from MathOps.Simple import Arithmetic as a
+print (a.Add(2,3))
+
+# Package MathOps init
+# Package MathOps.Simple init
+# 5
+```
+
+Daca vreau sa fac ceva de genul:
+      from MathOps.Simple import *
+      print (Arithmetic.Add(2,3))
+      print (Bits.SHL(2,3))
+primesc eroare !!!!!
+Ca se evit eroarea, adaug in fisierul __ init __ .py din folderul din care iau functiile __ all __ = ["Arithmetic","Bits"] # numele de fisiere care trebuie importate
+
+If you want a module and/or package to be available to all the scripts that areexecuted on that system just copy the module or the entire package folder on the
+Python search path and you will be able to access it directly. These paths are:
+      o Windows: <PythonFolder>\Lib
+      Exemple: C:\Python27\Lib or C:\Python37\Lib
+      o Linux: /usr/lib/<PythonVersion>
+      Example: /usr/lib/python2.7 or /usr/lib/python3.7)
+
+```python
+exec("def num_sum(x,y): return x+y")
+print(num_sum(10,20))
+```
+```python
+data = [0x65, 0x66, 0x67, 0x21, 0x54, 0x76, 0x6E, 0x62, 0x29, 0x79,
+      0x2D, 0x7A, 0x2D, 0x7B, 0x2A, 0x3B, 0x0E, 0x0B, 0x0A, 0x73,
+      0x66, 0x75, 0x76, 0x73, 0x6F, 0x21, 0x79, 0x2C, 0x7A, 0x2C,
+      0x7B]
+s = ""
+for i in data: 
+      s += chr(i-1)
+exec(s)
+print(Suma(1,2,3))
+```
+
+### Course 6
+```python
+import re
+
+r = re.compile("07[0-9]{8}")
+if r.match("0740123456"):
+      print("Match")
+```
+- se folosesc ambele cand fac verificarea intr-o bucla
+```python
+import re
+if re.match("07[0-9]{8}", "0740123456"):
+      print("Match")
+```
+```python
+import re
+if re.search("\d+","Price is 123 USD"):
+      print ("Found")
+
+import re
+r = re.compile(“\d+")
+if r.search("Price is 123 USD"):
+      print ("Found")
+```
+search = se opreste dupa primul pattern identificat, cerut de moi
+```python
+
+```
 ```python
 
 ```
