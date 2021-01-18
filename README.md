@@ -1066,11 +1066,99 @@ result.groupdict()
 (?s)(...) “.” (dot) will match everything
 
 ### Course 7
+update = pun un string pe care vreau sa il incriptez si pun b in fata ca sa il convertez in bytes
+cu hexdigest il convertesc folosind md5
 ```python
+import hashlib
+print (hashlib.md5(b"Today I'm having a Python course").hexdigest())  
+```
+json.dump = scrie obiectul in fisier
+json.dumps = scrie obiectul intr-un string | serviciu web
+json.load = creaza un obiect dintr-un fisier
+json.loads = creaza un obiect dintr-un string
 
+json -> rt = read text
+pickle -> rb = read binary sau wb = write binary
+
+Pickle = cand scriem in fisiere trebuie deschise in mod binar nu text
+Marshal = utilizat si pt a serializa cod; nu difera mult fata de Pickle doar ca e alt format
+
+random.randint(min,max) = inclusiv min si max
+random.choice(list) ➔ selects a random element from a list
+random.shuffle(list) ➔ shuffles the list / amesteca
+random.sample(list,count) ➔ creates another list from the current one containing count elements / elemente random
+
+```python
+import random
+print (random.random())
+print (random.randint(5,10))
+l = [2,3,5,7,11,13,17,19]
+print (random.choice(l))
+print (random.sample(l,3))
+random.shuffle(l)
+print (l)
+
+0.9410874890940395
+9
+5
+[19, 17, 11]
+[13, 17, 11, 5, 2, 19, 7, 3]
+```
+
+
+```python
+import zipfile
+z = zipfile.ZipFile("archive.zip")
+z.extract("MathOps/Simple/Arithmetic.py","MyFolder")
+z.close()
+
+Arithmetic.py will be extracted to “MyFolder/MathOps/Simple/Arithmetic.py”
+```
+```python
+import zipfile
+z = zipfile.ZipFile("archive.zip")
+z.extractall("MyFolder")
+z.close()
+
+creeaza ierarhia de foldere din arhiva si apoi o extrage acolo
+```
+```python
+import zipfile
+
+z = zipfile.ZipFile("archive.zip")
+f = z.open("MathOps/Simple/Arithmetic.py")
+data = f.read()
+f.close()
+open("my_ar.py","wb").write(data)
+z.close()
+```
+```python
+import zipfile
+
+z = zipfile.ZipFile("new_archive.zip","w",zipfile.ZIP_DEFLATED) # creez un zip + specific forma de compresie
+z.writestr("test.txt","some texts ...") # creez un fisier in zip si scriu in el ce e acolo
+z.write("serialization.json") 
+z.write("serialization.json", "/dir/a.json") # scriu in alt folder, nu in arhiva
+z.writestr("/dir/a.txt","another text ...")
+z.close()
 ```
 
 ### Course 8
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
 ```python
 
 ```
@@ -1079,6 +1167,7 @@ result.groupdict()
 ```python
 
 ```
+
 
 ### Course 10
 ```python
