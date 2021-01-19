@@ -1145,29 +1145,69 @@ z.close()
 
 ### Course 8
 ```python
-
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(("127.0.0.1",1234))
+s.listen(1) # nr max de conexiuni
+(connection, address) = s.accept()
+print ("Connectd address:",address);
+while True:
+      data = connection.recv(100).decode("UTF-8") # 100 = cati bytes vrem sa citim + cum decodam streamul de date primit
+      if not data: break
+      print("Received: ",data)
+      if "exit" in data: break
+connection.close()
+print ("Server closed")
 ```
+CLIENT
 ```python
-
+import socket,time
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("127.0.0.1",1234))
+s.send(b"Mesaj 1") # b = format binar pt ca send primeste un array de bytes
+time.sleep(1)
+s.send(b"Mesaj 2")
+time.sleep(1)
+s.send(b"exit")
+s.close()
 ```
+
+Getting current system IP
 ```python
-
+import socket
+print (socket.gethostbyname(socket.gethostname()))
 ```
+
+Convert a host to an IP:
 ```python
-
+import socket
+print (socket.gethostbyname('uaic.ro'))
 ```
+
+Getting the name associated with an IP:
 ```python
-
+import socket
+print (socket.gethostbyaddr("85.122.16.7"))
 ```
-```python
+connect_ex returns an error code if the connection is not possible. 0 means no error.
 
-```
+FTP = transfer fisiere, citi anumite date, etc
+
+SMTP = pt email
+
 
 ### Course 9
 ```python
 
 ```
 
+```python
+
+```
+
+```python
+
+```
 
 ### Course 10
 ```python
